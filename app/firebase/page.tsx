@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
+import { useAuthContext } from "@/context/AuthContext";
 
 const firebaseAuthConfig = {
   signInFlow: "popup",
@@ -39,10 +40,12 @@ const firebaseAuthConfig = {
 };
 
 function Page() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const { firebaseUser } = useAuthContext();
   const router = useRouter();
   const auth = getAuth(getApp());
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleSignIn = async (event: any) => {
     event.preventDefault();
@@ -74,80 +77,91 @@ function Page() {
 
   return (
     <div className="flex flex-col items-center justify-between p-4">
-      <div className="block h-12 justify-center font-bold ">
-        Sign in with Firebase
-      </div>
-      <div className="h-24">
-        <StyledFirebaseAuth uiConfig={firebaseAuthConfig} firebaseAuth={auth} />
-      </div>
-
-      <div className="wrapper">
-        <div className="form-wrapper">
-          <h1 className="mt-10 mb-2 font-bold">Sign in</h1>
-          <form onSubmit={handleSignIn} className="form">
-            <label htmlFor="email">
-              <Input
-                className="text-black mb-3"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@mail.com"
-              />
-              <br />
-            </label>
-            <label htmlFor="password">
-              <Input
-                className="text-black mb-3"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-              />
-              <br />
-            </label>
-            <Button variant="contained" type="submit">
-              Sign in
-            </Button>
-          </form>
+      {firebaseUser ? (
+        <div className="block h-12 justify-center font-bold ">
+          You're signed in with Firebase!
         </div>
+      ) : (
+        <>
+          <div className="block h-12 justify-center font-bold ">
+            Sign in with Firebase
+          </div>
+          <div className="h-24">
+            <StyledFirebaseAuth
+              uiConfig={firebaseAuthConfig}
+              firebaseAuth={auth}
+            />
+          </div>
 
-        <div className="form-wrapper">
-          <h1 className="mt-10 mb-2 font-bold">Sign up</h1>
-          <form onSubmit={handleSignUp} className="form">
-            <label htmlFor="email">
-              <Input
-                className="text-black mb-3"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@mail.com"
-              />
-              <br />
-            </label>
-            <label htmlFor="password">
-              <Input
-                className="text-black mb-3"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-              />
-              <br />
-            </label>
-            <Button variant="contained" type="submit">
-              Sign up
-            </Button>
-          </form>
-        </div>
-      </div>
+          <div className="wrapper">
+            <div className="form-wrapper">
+              <h1 className="mt-10 mb-2 font-bold">Sign in</h1>
+              <form onSubmit={handleSignIn} className="form">
+                <label htmlFor="email">
+                  <Input
+                    className="text-black mb-3"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="example@mail.com"
+                  />
+                  <br />
+                </label>
+                <label htmlFor="password">
+                  <Input
+                    className="text-black mb-3"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="password"
+                  />
+                  <br />
+                </label>
+                <Button variant="contained" type="submit">
+                  Sign in
+                </Button>
+              </form>
+            </div>
+
+            <div className="form-wrapper">
+              <h1 className="mt-10 mb-2 font-bold">Sign up</h1>
+              <form onSubmit={handleSignUp} className="form">
+                <label htmlFor="email">
+                  <Input
+                    className="text-black mb-3"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="example@mail.com"
+                  />
+                  <br />
+                </label>
+                <label htmlFor="password">
+                  <Input
+                    className="text-black mb-3"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="password"
+                  />
+                  <br />
+                </label>
+                <Button variant="contained" type="submit">
+                  Sign up
+                </Button>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -14,17 +14,11 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
-import { getAuth, signOut } from "firebase/auth";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 function Navbar() {
-  const { user } = useAuthContext();
-  const auth = getAuth();
+  const { firebaseUser, peazeUser } = useAuthContext();
 
-  const [signoutAlert, setSignoutAlert] = React.useState(false);
-  const [signinAlert, setSigninAlert] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -32,16 +26,6 @@ function Navbar() {
     null
   );
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setSignoutAlert(false);
-    setSigninAlert(false);
-  };
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -54,23 +38,6 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const handleSignOut = async () => {
-    await signOut(auth)
-      .then(() => {
-        setSignoutAlert(true);
-      })
-      .catch((e) => {
-        console.error("sign-out failed");
-        console.error(e.message);
-      });
-  };
-
-  React.useEffect(() => {
-    if (user) {
-      setSigninAlert(true);
-    }
-  }, [user]);
 
   return (
     <AppBar position="static">
@@ -172,19 +139,15 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {user ? (
+            {firebaseUser || peazeUser ? (
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  You are signed in
-                  <Avatar
-                    alt="Default user"
-                    src="/static/images/avatar/2.jpg"
-                  />
+                  <Avatar alt="" src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
             ) : (
               <Button
-                href="/firebase"
+                href="/"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
@@ -213,36 +176,10 @@ function Navbar() {
                   <Typography textAlign="center">Profile</Typography>
                 </Link>
               </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleCloseNavMenu();
-                  handleSignOut();
-                }}
-              >
-                <Typography textAlign="center">Sign Out</Typography>
-              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
       </Container>
-      <Snackbar
-        open={signoutAlert}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Signed-out
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={signinAlert}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Welcome!!
-        </Alert>
-      </Snackbar>
     </AppBar>
   );
 }
