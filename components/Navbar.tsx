@@ -17,7 +17,7 @@ import Link from "next/link";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 function Navbar() {
-  const { firebaseUser, peazeUser } = useAuthContext();
+  const { firebaseUser, peazeUser, magicLinkUser } = useAuthContext();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -139,8 +139,8 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {firebaseUser || peazeUser ? (
-              <Tooltip title="Open settings">
+            {firebaseUser || peazeUser || magicLinkUser ? (
+              <Tooltip title="You are signed-in">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="" src="/static/images/avatar/2.jpg" />
                 </IconButton>

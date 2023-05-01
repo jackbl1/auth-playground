@@ -16,10 +16,6 @@ const peaze = new PeazeSDK({
   },
 });
 
-const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUB_KEY || "", {
-  network: "mainnet",
-});
-
 export interface IAuthContext {
   firebaseUser: any;
   peazeUser: any;
@@ -47,6 +43,10 @@ export const AuthContextProvider = ({ children }: any) => {
   const [peazeUser, setPeazeUser] = React.useState<any>(null);
   const [magicLinkUser, setMagicLinkUser] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(true);
+
+  const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUB_KEY || "", {
+    network: "mainnet",
+  });
 
   const peazeSignin = async () => {
     const signer = await peaze.getSigner();

@@ -1,7 +1,4 @@
 "use client";
-import { PeazeSDK, SupportedNetwork } from "@peaze-labs/react";
-import { useState } from "react";
-import { ethers } from "ethers";
 import React from "react";
 import Button from "@mui/material/Button";
 import { useAuthContext } from "@/context/AuthContext";
