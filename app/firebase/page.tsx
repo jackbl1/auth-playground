@@ -2,15 +2,10 @@
 import signIn from "@/firebase/auth/signin";
 import signUp from "@/firebase/auth/signup";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { getApp } from "firebase/app";
-import {
-  getAuth,
-  EmailAuthProvider,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { getAuth, EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import { useAuthContext } from "@/context/AuthContext";
@@ -49,30 +44,12 @@ function Page() {
 
   const handleSignIn = async (event: any) => {
     event.preventDefault();
-
-    const { result, error } = await signIn(email, password);
-
-    if (error) {
-      return console.log(error);
-    }
-
-    // else successful
-    console.log(result);
-    return router.push("/admin");
+    await signIn(email, password);
   };
 
   const handleSignUp = async (event: any) => {
     event.preventDefault();
-
-    const { result, error } = await signUp(email, password);
-
-    if (error) {
-      return console.log(error);
-    }
-
-    // else successful
-    console.log(result);
-    return router.push("/admin");
+    await signUp(email, password);
   };
 
   return (

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import firebase_app from "@/firebase/config";
@@ -7,20 +8,11 @@ import Cookies from "js-cookie";
 
 const auth = getAuth(firebase_app);
 
-const peaze = new PeazeSDK({
-  id: process.env.NEXT_PUBLIC_PEAZE_PROJECT_ID || "",
-  key: process.env.NEXT_PUBLIC_PEAZE_PROJECT_KEY || "",
-  environment: "STAGING",
-  network: {
-    chainId: SupportedNetwork.PolygonMumbai,
-  },
-});
-
 export interface IAuthContext {
   firebaseUser: any;
   peazeUser: any;
-  peazeSignin: () => Promise<void>;
-  peazeSignout: () => Promise<void>;
+  // peazeSignin: () => Promise<void>;
+  // peazeSignout: () => Promise<void>;
   magicLinkUser: any;
   magicLinkSignin: () => Promise<void>;
   magicLinkSignout: () => Promise<void>;
@@ -29,8 +21,8 @@ export interface IAuthContext {
 export const AuthContext = React.createContext<IAuthContext>({
   firebaseUser: null,
   peazeUser: null,
-  peazeSignin: async () => {},
-  peazeSignout: async () => {},
+  // peazeSignin: async () => {},
+  // peazeSignout: async () => {},
   magicLinkUser: null,
   magicLinkSignin: async () => {},
   magicLinkSignout: async () => {},
@@ -48,16 +40,25 @@ export const AuthContextProvider = ({ children }: any) => {
     network: "mainnet",
   });
 
-  const peazeSignin = async () => {
-    const signer = await peaze.getSigner();
-    setPeazeUser(signer.address);
-    Cookies.set("peazeUser", signer.address);
-  };
+  // const peaze = new PeazeSDK({
+  //   id: process.env.NEXT_PUBLIC_PEAZE_PROJECT_ID || "",
+  //   key: process.env.NEXT_PUBLIC_PEAZE_PROJECT_KEY || "",
+  //   environment: "STAGING",
+  //   network: {
+  //     chainId: SupportedNetwork.PolygonMumbai,
+  //   },
+  // });
 
-  const peazeSignout = async () => {
-    setPeazeUser(null);
-    Cookies.remove("peazeUser");
-  };
+  // const peazeSignin = async () => {
+  //   const signer = await peaze.getSigner();
+  //   setPeazeUser(signer.address);
+  //   Cookies.set("peazeUser", signer.address);
+  // };
+
+  // const peazeSignout = async () => {
+  //   setPeazeUser(null);
+  //   Cookies.remove("peazeUser");
+  //};
 
   const magicLinkSignin = async () => {
     try {
@@ -111,8 +112,8 @@ export const AuthContextProvider = ({ children }: any) => {
       value={{
         firebaseUser,
         peazeUser,
-        peazeSignin,
-        peazeSignout,
+        // peazeSignin,
+        // peazeSignout,
         magicLinkUser,
         magicLinkSignin,
         magicLinkSignout,

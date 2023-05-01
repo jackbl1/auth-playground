@@ -11,7 +11,7 @@ function Page() {
   const {
     firebaseUser,
     peazeUser,
-    peazeSignout,
+    //peazeSignout,
     magicLinkUser,
     magicLinkSignout,
   } = useAuthContext();
@@ -61,7 +61,7 @@ function Page() {
             </div>
           )}
 
-          {peazeUser && (
+          {/* {peazeUser && (
             <div className="group rounded-lg border mb-5 px-5 py-4 text-white bg-black pattern-isometric pattern-blue-800 pattern-opacity-100 pattern-size-16">
               <h2 className={`mb-3 text-2xl font-semibold`}>Peaze</h2>
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
@@ -71,7 +71,7 @@ function Page() {
                 Signout
               </Button>
             </div>
-          )}
+          )} */}
 
           {magicLinkUser && (
             <div className="group rounded-lg border mb-5 px-5 py-4 transition-colors bg-gradient-to-r bg-opacity-50 border-blue-800 from-indigo-500 via-purple-500 to-pink-500">
