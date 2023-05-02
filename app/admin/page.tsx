@@ -1,26 +1,10 @@
 'use client';
 import React from 'react';
 import { useAuthContext } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import Cookies from 'js-cookie';
 
 function Page() {
-  const { firebaseUser, firebaseSignout, magicLinkUser, magicLinkSignout } =
+  const { firebaseUser, peazeUser, magicLinkUser, paperUser } =
     useAuthContext();
-
-  const [peazeUser, setPeazeUser] = React.useState<string | null>('');
-
-  React.useEffect(() => {
-    const peazeUserFromCookies = Cookies.get('peazeUser');
-    if (peazeUserFromCookies) {
-      setPeazeUser(peazeUserFromCookies);
-    } else {
-      setPeazeUser(null);
-    }
-  }, [peazeUser]);
 
   return (
     <>
@@ -32,9 +16,15 @@ function Page() {
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 {firebaseUser.email}
               </p>
-              <Button variant='contained' onClick={firebaseSignout}>
-                Signout
-              </Button>
+              {/* {loading ? (
+                <Button variant='contained' disabled>
+                  Loading...
+                </Button>
+              ) : (
+                <Button variant='contained' onClick={firebaseSignout}>
+                  Signout
+                </Button>
+              )} */}
             </div>
           )}
 
@@ -44,14 +34,15 @@ function Page() {
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 {peazeUser}
               </p>
-              <Button
-                variant='contained'
-                onClick={() => {
-                  Cookies.remove('peazeUser');
-                }}
-              >
-                Signout
-              </Button>
+              {/* {loading ? (
+                <Button variant='contained' disabled>
+                  Loading...
+                </Button>
+              ) : (
+                <Button variant='contained' onClick={peazeSignout}>
+                  Signout
+                </Button>
+              )} */}
             </div>
           )}
 
@@ -61,9 +52,33 @@ function Page() {
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 {magicLinkUser}
               </p>
-              <Button variant='contained' onClick={magicLinkSignout}>
-                Signout
-              </Button>
+              {/* {loading ? (
+                <Button variant='contained' disabled>
+                  Loading...
+                </Button>
+              ) : (
+                <Button variant='contained' onClick={magicLinkSignout}>
+                  Signout
+                </Button>
+              )} */}
+            </div>
+          )}
+
+          {paperUser && (
+            <div className='group rounded-lg border mb-5 px-5 py-4 text-white transition-colors bg-gradient-to-r bg-opacity-50 border-blue-800 from-black via-green-500 to-cyan-400'>
+              <h2 className={`mb-3 text-2xl font-semibold `}>Paper</h2>
+              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                {paperUser}
+              </p>
+              {/* {loading ? (
+                <Button variant='contained' disabled>
+                  Loading...
+                </Button>
+              ) : (
+                <Button variant='contained' onClick={magicLinkSignout}>
+                  Signout
+                </Button>
+              )} */}
             </div>
           )}
         </div>

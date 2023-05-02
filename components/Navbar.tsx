@@ -50,20 +50,21 @@ function Navbar() {
             <GitHubIcon />
           </Link>
 
-          <Typography
-            href='/'
-            variant='h6'
-            noWrap
-            component='a'
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Auth Playground
-          </Typography>
+          <Link href='/'>
+            <Typography
+              variant='h6'
+              noWrap
+              component='a'
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              Auth Playground
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton

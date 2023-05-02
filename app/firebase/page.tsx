@@ -5,7 +5,12 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { getApp } from 'firebase/app';
-import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  EmailAuthProvider,
+  GoogleAuthProvider,
+  signOut,
+} from 'firebase/auth';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
 import { useAuthContext } from '@/context/AuthContext';
@@ -38,17 +43,36 @@ function Page() {
   const { firebaseUser } = useAuthContext();
   const auth = getAuth(getApp());
 
+  const [loading, setLoading] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleSignIn = async (event: any) => {
+    setLoading(true);
     event.preventDefault();
     await signIn(email, password);
+    setLoading(false);
   };
 
   const handleSignUp = async (event: any) => {
+    setLoading(true);
     event.preventDefault();
     await signUp(email, password);
+    setLoading(false);
+  };
+
+  const firebaseSignout = async () => {
+    setLoading(true);
+    await signOut(auth)
+      .then(() => {
+        // setSignoutMessage('Signed out of Firebase');
+        // setSignoutAlert(true);
+      })
+      .catch((e: any) => {
+        console.error('sign-out failed');
+        console.error(e.message);
+      });
+    setLoading(false);
   };
 
   return (
@@ -57,9 +81,26 @@ function Page() {
         Sign in with Firebase
       </h1>
       {firebaseUser ? (
-        <div className='block h-12 justify-center font-bold '>
-          You're signed in with Firebase!
-        </div>
+        <>
+          <div className='block h-12 justify-center font-bold '>
+            You're signed in with Firebase!
+          </div>
+          <div className='group rounded-lg border mb-5 px-5 py-4 transition-colors border-red-700 bg-orange-500'>
+            <h2 className={`mb-3 text-2xl font-semibold`}>Firebase</h2>
+            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+              {firebaseUser.email}
+            </p>
+            {loading ? (
+              <Button variant='contained' disabled>
+                Loading...
+              </Button>
+            ) : (
+              <Button variant='contained' onClick={firebaseSignout}>
+                Signout
+              </Button>
+            )}
+          </div>
+        </>
       ) : (
         <>
           <div className='h-24'>

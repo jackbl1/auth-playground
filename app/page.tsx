@@ -7,7 +7,7 @@ export default function Home() {
       <div className='mb-32 grid text-center lg:text-left'>
         <Link
           href='/firebase'
-          className='group rounded-lg border border-gray-300 mb-5 px-5 py-4 transition-colors hover:border-red-700 hover:bg-orange-500'
+          className='group rounded-lg border border-gray-300 mb-5 px-5 py-4 transition-colors hover:pattern-wavy pattern-yellow-500 pattern-bg-orange-700 pattern-opacity-100 pattern-size-4'
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Firebase
@@ -37,7 +37,7 @@ export default function Home() {
 
         <Link
           href='/magic-link'
-          className='group rounded-lg border border-gray-300 mb-5 px-5 py-4 transition-colors hover:bg-gradient-to-r bg-opacity-50 hover:border-blue-800 from-indigo-500 via-purple-500 to-pink-500'
+          className='group rounded-lg border border-gray-300 mb-5 px-5 py-4 transition-colors hover:bg-gradient-to-r bg-opacity-50 hover:border-emerald-400 from-indigo-500 via-purple-500 to-pink-500'
         >
           <h2 className={`mb-3 text-2xl font-semibold `}>
             Magic Link
@@ -51,8 +51,23 @@ export default function Home() {
         </Link>
 
         <Link
+          href='/paper'
+          className='group rounded-lg border border-gray-300 mb-5 px-5 py-4 transition-colors hover:text-white hover:bg-gradient-to-r bg-opacity-50 hover:border-blue-800 from-black via-green-500 to-cyan-400'
+        >
+          <h2 className={`mb-3 text-2xl font-semibold `}>
+            Paper
+            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
+              -&gt;
+            </span>
+          </h2>
+          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+            Sign in using email, socials, or crypto wallet with Paper
+          </p>
+        </Link>
+
+        <Link
           href='/web3-auth'
-          className='group rounded-lg border border-gray-300 px-5 py-4 transition-colors hover:border-gray-500 hover:pattern-zigzag pattern-blue-800 bg-opacity-20 pattern-size-9'
+          className='group rounded-lg border border-gray-300 px-5 py-4 transition-colors hover:border-gray-500 hover:pattern-zigzag pattern-blue-200 pattern-bg-white bg-opacity-100 pattern-size-8'
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Web3 Auth
