@@ -1,10 +1,6 @@
-"use client";
-import Navbar from "@/components/Navbar";
-import "./globals.css";
-import { AuthContextProvider } from "@/context/AuthContext";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import './globals.css';
+import Navbar from '@/components/Navbar';
+import { AuthContextProvider } from '@/context/AuthContext';
 
 export default function RootLayout({
   children,
@@ -12,11 +8,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
         <title>Auth Playground</title>
       </head>
-      <body className={inter.className}>
+      <body>
         <AuthContextProvider>
           <Navbar />
           {children}

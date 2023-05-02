@@ -1,20 +1,20 @@
-"use client";
-import * as React from "react";
-import { useAuthContext } from "@/context/AuthContext";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import Link from "next/link";
-import GitHubIcon from "@mui/icons-material/GitHub";
+'use client';
+import * as React from 'react';
+import { useAuthContext } from '@/context/AuthContext';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Link from 'next/link';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Navbar() {
   const { firebaseUser, peazeUser, magicLinkUser } = useAuthContext();
@@ -40,98 +40,98 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Link
-            href="https://github.com/jackbl1/auth-playground"
-            className="ml-3 mr-3"
+            href='https://github.com/jackbl1/auth-playground'
+            className='ml-3 mr-3'
           >
             <GitHubIcon />
           </Link>
 
           <Typography
-            href="/"
-            variant="h6"
+            href='/'
+            variant='h6'
             noWrap
-            component="a"
+            component='a'
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
-              color: "inherit",
-              textDecoration: "none",
+              display: { xs: 'none', md: 'flex' },
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             Auth Playground
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color='inherit'
             >
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id='menu-appbar'
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: 'block', md: 'none' },
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link href="/">
-                  <Typography textAlign="center">Home</Typography>
+                <Link href='/'>
+                  <Typography textAlign='center'>Home</Typography>
                 </Link>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link href="/about">
-                  <Typography textAlign="center">About</Typography>
+                <Link href='/about'>
+                  <Typography textAlign='center'>About</Typography>
                 </Link>
               </MenuItem>
             </Menu>
           </Box>
           <Typography
-            variant="h5"
+            variant='h5'
             noWrap
-            component="a"
-            href="/"
+            component='a'
+            href='/'
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              color: "inherit",
-              textDecoration: "none",
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             Auth Playground
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Link
-              className="px-4 py-5 block"
-              href="/"
+              className='px-4 py-5 block'
+              href='/'
               onClick={handleCloseNavMenu}
             >
               Home
             </Link>
             <Link
-              className="px-4 py-5 block"
-              href="/about"
+              className='px-4 py-5 block'
+              href='/about'
               onClick={handleCloseNavMenu}
             >
               About
@@ -140,40 +140,40 @@ function Navbar() {
 
           <Box sx={{ flexGrow: 0 }}>
             {firebaseUser || peazeUser || magicLinkUser ? (
-              <Tooltip title="You are signed-in">
+              <Tooltip title='You are signed-in'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt='' src='/static/images/avatar/2.jpg' />
                 </IconButton>
               </Tooltip>
             ) : (
               <Button
-                href="/"
+                href='/'
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Sign-in
               </Button>
             )}
 
             <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
+              sx={{ mt: '45px' }}
+              id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Link href="/admin">
-                  <Typography textAlign="center">Profile</Typography>
+                <Link href='/admin'>
+                  <Typography textAlign='center'>Profile</Typography>
                 </Link>
               </MenuItem>
             </Menu>
