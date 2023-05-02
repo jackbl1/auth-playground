@@ -3,7 +3,8 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+    <main className='flex min-h-screen flex-col items-center justify-between p-6'>
+      <h1 className='text-2xl font-bold text-sky-700'>Auth Playground</h1>
       <div className='mb-32 grid text-center lg:text-left'>
         <Link
           href='/firebase'

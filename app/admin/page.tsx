@@ -11,7 +11,7 @@ function Page() {
       <main className='flex min-h-screen flex-col items-center justify-between p-24'>
         <div className='mb-32 grid text-center lg:text-left'>
           {firebaseUser && (
-            <div className='group rounded-lg border mb-5 px-5 py-4 transition-colors border-red-700 bg-orange-500'>
+            <div className='group rounded-lg border mb-5 px-5 py-4 transition-colors pattern-wavy pattern-yellow-500 pattern-bg-orange-700 pattern-opacity-100 pattern-size-4'>
               <h2 className={`mb-3 text-2xl font-semibold`}>Firebase</h2>
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
                 {firebaseUser.email}
