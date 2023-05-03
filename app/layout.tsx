@@ -10,6 +10,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
+        <meta name='fortmatic-site-verification' content='sRSJzN53kNvjzjCm' />
         <title>Auth Playground</title>
       </head>
       <body>

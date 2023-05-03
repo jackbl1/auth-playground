@@ -140,20 +140,12 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {firebaseUser || peazeUser || magicLinkUser ? (
+            {(firebaseUser || peazeUser || magicLinkUser) && (
               <Tooltip title='You are signed-in'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt='' src='/static/images/avatar/2.jpg' />
                 </IconButton>
               </Tooltip>
-            ) : (
-              <Button
-                href='/'
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Sign-in
-              </Button>
             )}
 
             <Menu
