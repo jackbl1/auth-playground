@@ -7,18 +7,15 @@ Auth Playground is a NextJS App built by Jack Bloomfeld. After noticing many new
 ## Auth Options
 
 Currently the app supports the following auth options:
-Firebase Auth
 
-- email
-- google
+- Firebase
+- MagicLink
+- Paper.xyz
 
-MagicLink
+Coming soon:
 
-- in progress
-
-Web3Auth
-
-- in progress
+- Peaze
+- Web3Auth
 
 ## Getting Started
 
