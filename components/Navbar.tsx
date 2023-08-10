@@ -17,7 +17,8 @@ import Link from 'next/link';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Navbar() {
-  const { firebaseUser, peazeUser, magicLinkUser } = useAuthContext();
+  const { firebaseUser, peazeUser, magicLinkUser, paperUser, web3AuthUser } =
+    useAuthContext();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -140,7 +141,11 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {(firebaseUser || peazeUser || magicLinkUser) && (
+            {(firebaseUser ||
+              peazeUser ||
+              magicLinkUser ||
+              paperUser ||
+              web3AuthUser) && (
               <Tooltip title='You are signed-in'>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt='' src='/static/images/avatar/2.jpg' />

@@ -14,6 +14,8 @@ export interface IAuthContext {
   setMagicLinkUser: (user: any) => void;
   paperUser: any;
   setPaperUser: (user: any) => void;
+  web3AuthUser: any;
+  setWeb3AuthUser: (user: any) => void;
 }
 
 export const AuthContext = React.createContext<IAuthContext>({
@@ -24,6 +26,8 @@ export const AuthContext = React.createContext<IAuthContext>({
   setMagicLinkUser: (user: any) => {},
   paperUser: null,
   setPaperUser: (user: any) => {},
+  web3AuthUser: null,
+  setWeb3AuthUser: (user: any) => {},
 });
 
 export const useAuthContext = () => React.useContext(AuthContext);
@@ -33,6 +37,7 @@ export const AuthContextProvider = ({ children }: any) => {
   const [peazeUser, setPeazeUser] = React.useState<any>(null);
   const [magicLinkUser, setMagicLinkUser] = React.useState<any>(null);
   const [paperUser, setPaperUser] = React.useState<any>(null);
+  const [web3AuthUser, setWeb3AuthUser] = React.useState<any>(null);
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user: any) => {
@@ -63,9 +68,16 @@ export const AuthContextProvider = ({ children }: any) => {
   React.useEffect(() => {
     const paperUserFromCookies = Cookies.get('paperUser');
     if (paperUserFromCookies) {
-      setMagicLinkUser(paperUserFromCookies);
+      setPaperUser(paperUserFromCookies);
     }
   }, [paperUser]);
+
+  React.useEffect(() => {
+    const web3AuthUserFromCookies = Cookies.get('web3AuthUser');
+    if (web3AuthUserFromCookies) {
+      setWeb3AuthUser(web3AuthUserFromCookies);
+    }
+  }, [web3AuthUser]);
 
   return (
     <AuthContext.Provider
@@ -77,6 +89,8 @@ export const AuthContextProvider = ({ children }: any) => {
         setMagicLinkUser,
         paperUser,
         setPaperUser,
+        web3AuthUser,
+        setWeb3AuthUser,
       }}
     >
       {children}

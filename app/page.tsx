@@ -22,17 +22,17 @@ export default function Home() {
         </Link>
 
         <Link
-          href='/peaze'
+          href='/web3auth'
           className='group rounded-lg border border-gray-300 mb-5 px-5 py-4 hover:text-white hover:bg-black hover:pattern-isometric pattern-blue-800 pattern-opacity-100 pattern-size-16'
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Peaze
+            Web3Auth
             <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Sign in using email with Peaze
+            Sign in using email, socials, or crypto wallet with Web3Auth
           </p>
         </Link>
 
@@ -63,21 +63,6 @@ export default function Home() {
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             Sign in using email, socials, or crypto wallet with Paper
-          </p>
-        </Link>
-
-        <Link
-          href='/web3-auth'
-          className='group rounded-lg border border-gray-300 px-5 py-4 transition-colors hover:border-gray-500 hover:pattern-zigzag pattern-blue-200 pattern-bg-white bg-opacity-100 pattern-size-8'
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Web3 Auth
-            <span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Sign in using email, socials, or crypto wallet with Web3 Auth
           </p>
         </Link>
       </div>
